@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 '''login required mixin is used so that we will able to access the page only if its logged in 
@@ -25,6 +26,18 @@ class PostListView(ListView):
     context_object_name = 'posts'
     '''to make the ordering from newest to oldest'''
     ordering = ['-date_posted']
+    paginate_by = 5
+
+class UserPostListView(ListView):
+    model = Post
+    context_object_name = 'posts'
+    '''to make the ordering from newest to oldest'''
+    paginate_by = 5
+    '''to get the username from the url'''
+    def get_queryset(self):
+        user =  get_object_or_404(User,username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
+
 
 
 class PostDetailView(DetailView):
