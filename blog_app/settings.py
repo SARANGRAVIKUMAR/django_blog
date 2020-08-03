@@ -25,7 +25,7 @@ SECRET_KEY = '==^(c9jfw)r#buc&di@_s(qmr(4zf*+23f=qel$=(tlqi)$1s$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-blogapps.herokuapp.com']
 
 
 # Application definition
