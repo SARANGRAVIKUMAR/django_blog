@@ -25,6 +25,7 @@ SECRET_KEY = '==^(c9jfw)r#buc&di@_s(qmr(4zf*+23f=qel$=(tlqi)$1s$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['django-blogapps.herokuapp.com']
 
 
@@ -86,6 +87,10 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 
 # Password validation
